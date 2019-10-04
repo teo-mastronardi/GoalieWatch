@@ -3,7 +3,7 @@ import Goalie
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.dailyfaceoff.com/starting-goalies/10-02-2019/"
+url = "https://www.dailyfaceoff.com/starting-goalies/"
 
 page = BeautifulSoup(requests.get(url).text, "lxml")
 goalies = []
@@ -74,7 +74,7 @@ def isMyGoaliePlaying(goalies, listOfPlaying):
 #Need to find what time goalie is playing at
 
 
-myGoalies =['Braden Holtby', 'Mike Smith']
+myGoalies =['Carter Hart', 'Cory Schneider']
 isMyGoaliePlaying(myGoalies, listOfGoalies)
            
     
