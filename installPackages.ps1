@@ -1,9 +1,14 @@
-#
-# GOALIEWATCH SERVER PACKAGE INSTALLATION
-# --------------------------------
-#
-# Installing required python and node packages for server migration to Pi
-#
+<#
+--------------------------------
+GOALIEWATCH SERVER PACKAGE INSTALLATION
+--------------------------------
+
+Installing required python and node packages for server migration to Pi
+
+*NOTE* You MUST change the Execution Policy if your personal machine so you can run this script
+
+Ex: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+#>
 
 Write-Host "This may take a while..." -ForegroundColor Yellow
 
