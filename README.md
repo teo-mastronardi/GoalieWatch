@@ -2,7 +2,7 @@
 A python based application that allows users to receive emails on whether their goalie is starting that day for fantasy hockey.
 
 
-#Setup Guide
+### Setup Guide
 
 If you'd like to run this locally while we work on making a website:
 
