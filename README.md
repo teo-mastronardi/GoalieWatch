@@ -10,23 +10,25 @@ Step 1
 - Make sure you have python3 installed
 
 Step 2
-- Install GoalieWatchLocal.py
-          Goalie.py
-          
-          notify.py
-          
-          sendEmail.py
-          
-          runApp.sh (if Mac)
-          
-          runApp.ps1(if PC)
+- Install 
+
+          GoalieWatchLocal.py
+          GoalieLocal.py
+          notifyLocal.py
+          sendEmailLocal.py
           
 Step 3
 - In GoalieWatchLocal.py, enter your goalies in the 'myGoalies' list
 
-  In sendEmail.py, change 'receiver_email' to your email
+  In sendEmailLocal.py, change 'receiver_email' to your email
   
 Step 4
-- Create a crontab to run the app every 15 minutes
+- Create a crontab to run the app every 15 minutes, starting at 10:00am to 11:45pm (Incase of early game times)
 
-*/15    07-19        *     * *     /path/GoalieWatchLocal.py
+          To create a cron tab in terminal, type: 
+          crontab -e
+          
+          and paste the following:
+          */15    10-23        *     * *     /path/GoalieWatchLocal.py
+          
+          
