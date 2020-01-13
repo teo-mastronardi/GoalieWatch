@@ -10,7 +10,7 @@ Step 1
 - Make sure you have python3 installed
 
 Step 2
-- Install 
+- Download: 
 
           GoalieWatchLocal.py
           GoalieLocal.py
