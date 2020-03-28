@@ -4,7 +4,7 @@ from pymongo import MongoClient
 # from dotenv import load_dotenv
 
 # Connecting to mongoDB
-client = MongoClient('mongodb+srv://admin:L4r53N41**@goaliewatch-0mgxp.mongodb.net/test?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://<username>:<password>@goaliewatch-0mgxp.mongodb.net/test?retryWrites=true&w=majority')
 db     = client.get_database('GoalieWatch')
 collection = db.goalies
 
