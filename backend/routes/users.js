@@ -3,6 +3,7 @@
 const router = require('express').Router();
 let User = require('../models/user.model.js');
 
+// retrieving all users
 router.route('/').get((req, res) => 
 {
     User.find()
@@ -10,6 +11,7 @@ router.route('/').get((req, res) =>
       .catch(err => res.status(400).json('Unable to save to database \n' + err)); 
 });
 
+// adding users to database
 router.route('/add').post((req, res) =>
 {
     const username   = req.body.username;

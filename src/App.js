@@ -3,11 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Included components
-import Navbar from "./components/navbar.component";
-import GoalieList from "./components/goalie-list.component";
-import CreateGoalie from "./components/create-goalie.component";
-import EditGoalie from "./components/edit-goalie.component";
-import CreateUser from "./components/create-user.component";
+import Navbar                   from "./components/navbar.component";
+import CreateGoalieNotification from "./components/create-goalie-notification.component";
+import Register                 from "./components/register.component";
+import Login                    from "./components/login.component";
+import EmailDevs                from "./components/email-devs.component";
 
 function App() 
 {
@@ -16,10 +16,10 @@ function App()
       <div className="container">
         <Navbar />
         <br/>
-        <Route path="/" exact component={GoalieList} />
-        <Route path="/edit/:id" component={EditGoalie} />
-        <Route path="/create" component={CreateGoalie} />
-        <Route path="/user" component={CreateUser} />
+        <Route path="/" exact    component={CreateGoalieNotification} />
+        <Route path="/register"  component={Register} />
+        <Route path="/login"     component={Login} />
+        <Route path="/emaildevs" component={EmailDevs} />
         </div>
     </Router>
   );

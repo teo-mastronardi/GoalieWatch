@@ -75,6 +75,11 @@ Write-Host "This may take a few minutes..." -ForegroundColor Yellow
     npm install axios
     Write-Host "Axios package installed" -ForegroundColor Green 
 
+    # Adding in react select for dynamic searching
+    npm install react-select@next
+    Write-Host "React select package installed" -ForegroundColor Green 
+
+
     # Adding in node fetch to pull data from NHL API
     npm install node-fetch
     Write-Host "Note Fetch package installed" -ForegroundColor Green 

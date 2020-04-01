@@ -1,34 +1,39 @@
 var mongoose = require('mongoose');
 
-const goalieSchema = new mongoose.Schema(
+var goalieSchema = new mongoose.Schema(
   {
-    username:
+    team_id:  
     {
       type: String,
       required: true,
-      unique: true,
-      trim: true,
-      minlength: 3 
     },
-    goalie_id:  
+    team_name:
     {
       type: String,
-      required: true, 
+      required: true
     },
-    goalie_name:  
+    goalie_name:    
     {
       type: String,
-      required: true, 
+      required: true
     },
-    reminder:
+    goalie_id:
     {
-      type: Number,
+      type: String,
       required: true,
-    }
-  }, {
-    timestamps: true,
+    },
+    jersey_number:
+    {
+      type: String,
+      required: true,
+    },
+    player_link:
+    {
+      type: String,
+      required: true,
+    },
   });
 
-const Goalie = mongoose.model('Goalie', goalieSchema);
+const goalie_model = mongoose.model('goalie', goalieSchema);
 
-module.exports = Goalie;
+module.exports = goalie_model;
