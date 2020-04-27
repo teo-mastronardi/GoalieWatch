@@ -67,7 +67,7 @@ app.use('/goalieRequest', goalieRequestRouter);
 // Cron job running NHL API goalie scrape running every 15 minutes
 console.log("Cron scheduler ready...");
 //cron.schedule("1 * * * * *", function() {
-cron.schedule("* 15 * * * *", function() {
+cron.schedule("* * 1 * * *", function() {
   console.log("Scheduler running goalie cron job...\n");
   if (shell.exec("python ./web-scrape/goalieCron.py").code !== 0) {
     console.log("Cron job did not successfully run");

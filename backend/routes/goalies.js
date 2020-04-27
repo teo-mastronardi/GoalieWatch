@@ -6,7 +6,7 @@ let Goalies  = require('../models/goalie.model.js');
 // pull all scraped goalies from database
 router.route('/').get((req, res) =>
 {
-    Goalies.find()
+    Goalies.find().sort( {goalie_name: 1})
        .then(goalies => {
            return res.status(200).json(goalies);
         })

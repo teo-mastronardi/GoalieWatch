@@ -8,7 +8,7 @@ router.route('/').get((req, res) =>
 {
     GoalieRequest.find()
       .then(goalieRequest => {
-        return res.json(goalieRequest);
+        return res.status.apply(200).json(goalieRequest);
       })
       .catch(err => {
         return res.status(400).json('Unable to pull existing requests \n' + err);

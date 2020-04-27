@@ -1,10 +1,10 @@
 <#
 
 -----------------------------------------
-GOALIEWATCH SERVER PACKAGE INSTALLATION
+GOALIEWATCH SERVER REQUIREMENTS INSTALLATION
 -----------------------------------------
 
-Installing required python and node packages for server migration to Pi
+Installing required python and node packages for server migration
 
 *NOTE* You MUST change the Execution Policy if your personal machine so you can run this script in your PowerShell terminal
 
