@@ -7,8 +7,12 @@ let User = require('../models/user.model.js');
 router.route('/').get((req, res) => 
 {
     User.find()
-      .then(users => res.json(users))
-      .catch(err => res.status(400).json('Unable to save to database \n' + err)); 
+      .then(users => {
+        return res.status(200).json(users);
+      })
+      .catch(err => {
+        return res.status(400).json('Unable to save to database \n' + err);
+      }); 
 });
 
 // adding users to database
@@ -25,8 +29,12 @@ router.route('/add').post((req, res) =>
     });
 
     newUser.save()
-      .then( () => res.json('User Added!'))
-      .catch((err => res.status(400).json('Error saving \n' + err)));
+      .then( () => {
+        return res.status(201).json('User Added!');
+      })
+      .catch((err => {
+        return res.status(400).json('Error saving \n' + err)
+      }));
 });
 
 module.exports = router;
