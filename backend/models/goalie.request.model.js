@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 const goalieRequestSchema = new mongoose.Schema(
   {
-    username:
+    email:
     {
       type: String,
       required: true,
@@ -10,15 +10,10 @@ const goalieRequestSchema = new mongoose.Schema(
       trim: true,
       minlength: 3 
     },
-    goalie_id:  
-    {
-      type: String,
-      required: true, 
-    },
     goalie_name:  
     {
       type: String,
-      required: true, 
+      required: true,
     },
     reminder:
     {

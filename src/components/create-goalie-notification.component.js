@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-//import Select from 'react-select';
+import { MultiSelect } from '@progress/kendo-react-dropdowns';
+// import { filterBy } from '@progress/kendo-data-query';
 
 export default class CreateGoalieNotification extends Component
 {
@@ -8,48 +9,25 @@ export default class CreateGoalieNotification extends Component
     {
         super(props);
 
-        this.onChangeUsername   = this.onChangeUsername.bind(this);
-        this.onChangeGoalieId   = this.onChangeGoalieId.bind(this);
+        this.onChangeEmail      = this.onChangeEmail.bind(this);
         this.onChangeGoalieName = this.onChangeGoalieName.bind(this);
         this.onChangeReminder   = this.onChangeReminder.bind(this);
         this.onSubmit           = this.onSubmit.bind(this);
 
         this.state = 
         {
-            username: '',
-            goalie_id:'',
-            goalie_name:'',
-            reminder:'',
+            email: '',
+            goalie_name: '',
+            reminder: '',
             goalies: []
         }
     }
 
-    onChangeUsername (e)
+    onChangeEmail (e)
     {
         this.setState
         ({
-            username: e.target.value
-        });
-    }
-
-    componentDidMount()
-    {
-        Axios.get('http://localhost:8080/goalies/')
-        .then(response => {
-            if (response.data.length > 0) {
-                this.setState ({
-                    goalies: response.data.map(goalie => goalie.goalie_name),
-                    goalie_name: response.data[0].goalie_name
-                })
-            }  
-        })
-    }
-
-    onChangeGoalieId (e)
-    {
-        this.setState
-        ({
-            goalie_id: e.target.value
+            email: e.target.value
         });
     }
 
@@ -61,6 +39,20 @@ export default class CreateGoalieNotification extends Component
         });
     }
 
+    // onFilterChange (e)
+    // {
+    //     Axios.get('http://localhost:8080/goalies/')
+    //     .then(response => {
+    //         if (response.data.length > 0) {
+    //             this.setState ({
+    //                 teams:     response.data.map(team_name => goalie.team_name),
+    //                 team_name: response.data[0].team_name
+    //             })
+    //         } 
+    //         data: filterBy(team_name.slice(), e)
+    //     })
+    // }
+
     onChangeReminder (e)
     {
         this.setState
@@ -69,22 +61,33 @@ export default class CreateGoalieNotification extends Component
         });
     }
 
+    componentDidMount()
+    {
+        Axios.get('http://localhost:8080/goalies/')
+        .then(response => {
+            if (response.data.length > 0) {
+                this.setState ({
+                    goalies:     response.data.map(goalie => goalie.goalie_name),
+                    goalie_name: response.data[0].goalie_name
+                })
+            }
+        })
+    }
+
     onSubmit (e)
     {
         e.preventDefault();
 
         const goalieRequest = 
         {
-            username:    this.state.username,
-            goalie_id:   this.state.goalie_id,
+            email:       this.state.email,
             goalie_name: this.state.goalie_name,
             reminder:    this.state.reminder
         }
 
         console.log(goalieRequest);
 
-        //Navigator
-        //window.location = '/';
+        // Nav to add another request on submit
         Axios.post('http://localhost:8080/goalieRequest/add/', goalieRequest);
     }
 
@@ -95,29 +98,20 @@ export default class CreateGoalieNotification extends Component
             <h3>Setup your custom notification</h3>
             <form onSubmit={this.onSubmit}>
             <div className="form-group"> 
-                <label>Username: </label>
-                <input type="text"
+                <label>Email: </label>
+                <input type="email"
                     required
                     className="form-control"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
+                    value={this.state.email}
+                    onChange={this.onChangeEmail}
                     />
             </div>
-            <div className="form-group">
-                <label>Goalie Id: </label>
-                <input 
-                    type="text" 
-                    className="form-control"
-                    value={this.state.goalie_id}
-                    onChange={this.onChangeGoalieId}
-                    />
-            </div>
-            <div className="form-group"> 
-                <label>Goalie Name: </label>
-                <select ref="userInput"
+            <div> 
+                <label>Select Goalies: </label>
+                {/* <select ref="userInput"
                     required
                     className="form-control"
-                    value={this.state.goalie_name}
+                    //value={this.state.goalie_name}
                     onChange={this.onChangeGoalieName}>
                     {
                       this.state.goalies.map(function(goalie) {
@@ -127,7 +121,19 @@ export default class CreateGoalieNotification extends Component
                           </option>;
                       })
                     }
-                </select>
+                </select> */}
+                <div>
+                    <MultiSelect
+                        data={this.state.goalies.map(function(goalie) {
+                                return goalie;
+                            })}
+                        filterable={true}
+                        onFilterChange={this.onFilterChange}
+                        onChange={this.onChangeGoalieName}
+                        value={this.state.value}
+                    />
+                </div>
+                <br/>
             </div>
             <div className="form-group"> 
                 <label>Reminder (in minutes): </label>

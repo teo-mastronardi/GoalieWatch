@@ -79,6 +79,9 @@ Write-Host "This may take a few minutes..." -ForegroundColor Yellow
     npm install react-select@next
     Write-Host "React select package installed" -ForegroundColor Green 
 
+    # Adding in multiselect for goalie drop down
+    npm install --save @progress/kendo-react-dropdowns @progress/kendo-react-intl
+    Write-Host "Multiselect package installed" -ForegroundColor Green 
 
     # Adding in node fetch to pull data from NHL API
     npm install node-fetch

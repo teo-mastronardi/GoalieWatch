@@ -23,7 +23,7 @@ export default class Navbar extends Component
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav ml-auto">
                     <li>
-                    <a className="nav-link" href="/login"><i className="fa fa-user-o"></i>      Login</a>
+                    <a className="nav-link" href="/login"><i className="fa fa-user-o"></i> Edit Request</a>
                     </li> 
                 </ul>
             </div>

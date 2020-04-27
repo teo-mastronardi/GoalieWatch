@@ -42,7 +42,7 @@ catch(e) {console.log("Errors including packages: " + (e));}
 try 
 {
   const uri = process.env.ATLAS_URI;
-  mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
+  mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
 
   const connection = mongoose.connection;
   connection.once('open', () => 
@@ -66,9 +66,9 @@ app.use('/goalieRequest', goalieRequestRouter);
 
 // Cron job running NHL API goalie scrape running every 15 minutes
 console.log("Cron scheduler ready...");
-//cron.schedule("1 * * * * *", function() {
 cron.schedule("* 15 * * * *", function() {
-  console.log("Scheduler running goalie cron job...");
+//cron.schedule("* 15 * * * *", function() {
+  console.log("Scheduler running goalie cron job...\n");
   if (shell.exec("python ./web-scrape/goalieCron.py").code !== 0) {
     console.log("Cron job did not successfully run");
   }

@@ -14,17 +14,17 @@ router.route('/').get((req, res) =>
 // Adding notification request to the database
 router.route('/add').post((req, res) =>
 {
-    const username    = req.body.username;
-    const goalie_id   = req.body.goalie_id;
+    const email       = req.body.email;
     const goalie_name = req.body.goalie_name;
     const reminder    = req.body.reminder;
 
     const newGoalieRequest = new GoalieRequest({
-        username,
-        goalie_id,
+        email,
         goalie_name,
         reminder,
     });
+
+    console.log(newGoalieRequest);
 
     newGoalieRequest.save()
       .then( () => res.json('Goalie request added!'))
@@ -53,8 +53,7 @@ router.route('/update/:id').post((req, res) =>
     GoalieRequest.findByIdAndUpdate(req.params.id)
       .then(goalieRequest => 
         {
-            goalieRequest.username    = req.body.username;
-            goalieRequest.goalie_id   = req.body.username;
+            goalieRequest.email       = req.body.email;
             goalieRequest.goalie_name = req.body.goalie_name;
             goalieRequest.reminder    = req.body.reminder;
           
