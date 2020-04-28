@@ -39,6 +39,10 @@ Write-Host "This may take a few minutes..." -ForegroundColor Yellow
     npm install mongoose --save
     Write-Host "Mongoose installed" -ForegroundColor Green
 
+    # Install nodemon
+    npm install nodemon
+    Write-Host "Nodemon installed" -ForegroundColor Green
+
     # Adding in session packages
     npm install --save express-session
     Write-Host "Session packages installed" -ForegroundColor Green
@@ -80,8 +84,8 @@ Write-Host "This may take a few minutes..." -ForegroundColor Yellow
     Write-Host "React select package installed" -ForegroundColor Green 
 
     # Adding in multiselect for goalie drop down
-    npm install --save @progress/kendo-react-dropdowns @progress/kendo-react-intl
-    Write-Host "Multiselect package installed" -ForegroundColor Green 
+    npm install --save @progress/kendo-react-dropdowns @progress/kendo-react-intl @progress/kendo-data-query
+    Write-Host "Multiselect packages installed" -ForegroundColor Green 
 
     # Adding in node fetch to pull data from NHL API
     npm install node-fetch

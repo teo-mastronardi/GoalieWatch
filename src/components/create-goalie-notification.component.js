@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { MultiSelect } from '@progress/kendo-react-dropdowns';
-// import { filterBy } from '@progress/kendo-data-query';
+import { filterBy } from '@progress/kendo-data-query';
 
 export default class CreateGoalieNotification extends Component
 {
@@ -18,8 +18,10 @@ export default class CreateGoalieNotification extends Component
         {
             email: '',
             goalie_name: '',
+            team_name: '',
             reminder: '',
-            goalies: []
+            goalies: [],
+            teams: [],
         }
     }
 
@@ -39,20 +41,6 @@ export default class CreateGoalieNotification extends Component
         });
     }
 
-    // onFilterChange (e)
-    // {
-    //     Axios.get('http://localhost:8080/goalies/')
-    //     .then(response => {
-    //         if (response.data.length > 0) {
-    //             this.setState ({
-    //                 teams:     response.data.map(team_name => goalie.team_name),
-    //                 team_name: response.data[0].team_name
-    //             })
-    //         } 
-    //         data: filterBy(team_name.slice(), e)
-    //     })
-    // }
-
     onChangeReminder (e)
     {
         this.setState
@@ -61,14 +49,35 @@ export default class CreateGoalieNotification extends Component
         });
     }
 
+    // onFilterChange (e)
+    // {
+    //     Axios.get('http://localhost:8080/goalies/')
+    //     .then(response => {
+
+    //         console.log(response);
+
+    //         if (response.data.length > 0) 
+    //         {
+    //             this.setState ({
+    //                 teams: response.data.map(goalie => goalie.team_name),
+    //                 data:  filterBy(response.data[0].team_name.slice())
+    //             })
+    //         }
+    //     })
+    // }
+
     componentDidMount()
     {
         Axios.get('http://localhost:8080/goalies/')
         .then(response => {
-            if (response.data.length > 0) {
+
+            if (response.data.length > 0) 
+            {
                 this.setState ({
                     goalies:     response.data.map(goalie => goalie.goalie_name),
-                    goalie_name: response.data[0].goalie_name
+                    goalie_name: response.data[0].goalie_name,
+                    // teams:       response.data.map(goalie => goalie.team_name),
+                    // team_name:   response.data[0].team_name
                 })
             }
         })
@@ -124,11 +133,11 @@ export default class CreateGoalieNotification extends Component
                 </select> */}
                 <div>
                     <MultiSelect
-                        data={this.state.goalies.map(function(goalie) {
-                                return goalie;
+                        data={this.state.goalies.map(function(goalie_name) {   
+                                return goalie_name;                                
                             })}
                         filterable={true}
-                        onFilterChange={this.onFilterChange}
+                        // onFilterChange={this.onFilterChange}
                         onChange={this.onChangeGoalieName}
                         value={this.state.value}
                     />
@@ -144,6 +153,8 @@ export default class CreateGoalieNotification extends Component
                     onChange={this.onChangeReminder}
                     />
             </div>
+
+            {/* <img src={"https://content.sportslogos.net/logos/1/1736/full/1651_anaheim_ducks-primary-2014.gif"} alt="team"/> */}
 
             <div className="form-group">
                 <input type="submit" value="Submit Notifcation" className="btn btn-primary" />
