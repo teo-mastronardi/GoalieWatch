@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 export default class EmailDevs extends Component
 {
@@ -7,7 +8,6 @@ export default class EmailDevs extends Component
     {
         super(props);
 
-        this.onChangeUsername   = this.onChangeUsername.bind(this);
         this.onChangeEmail      = this.onChangeEmail.bind(this);
         this.onChangeSubject    = this.onChangeSubject.bind(this);
         this.onChangeBody       = this.onChangeBody.bind(this);
@@ -15,20 +15,14 @@ export default class EmailDevs extends Component
 
         this.state = 
         {
-            username: '',
             email: '',
             subject: '',
             body: '',
         }
     }
 
-    onChangeUsername (e)
-    {
-        this.setState
-        ({
-            username: e.target.value
-        });
-    }
+    listAreas = [ "Submitting a notification", "Editing an existing notification", "Never recieved email notification",
+                  "My fantasy goalie isn't listed", "Other"];
 
     onChangeEmail (e)
     {
@@ -58,25 +52,23 @@ export default class EmailDevs extends Component
     {
         e.preventDefault();
 
-        const email = 
+        const sentEmail = 
         {
-            username: this.state.username,
             email:    this.state.email,
             subject:  this.state.subject,
             body:     this.state.body
         }
 
-        console.log(email);
+        console.log(sentEmail);
 
         // Sending input data to the backend to use API to handle request
-        Axios.post('http://localhost:8080/users/add', email)
+        Axios.post('http://localhost:8080/emailDevs/add', sentEmail)
             .then(res => console.log(res.data));
             //.catch(err => console.log("Unable to send username to bacnekend " + err));
 
         //Reset the fields
         this.setState
         ({
-            username:'',
             email:'',
             subject: '',
             body: ''
@@ -90,13 +82,6 @@ export default class EmailDevs extends Component
             <h3>Send devs issues</h3>
             <form onSubmit={this.onSubmit}>
               <div className="form-group"> 
-                <label>Username: </label>
-                <input type="text"
-                    required
-                    className="form-control"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                />
                 <label>Email: </label>
                 <input type="email"
                     required
@@ -104,23 +89,28 @@ export default class EmailDevs extends Component
                     value={this.state.email}
                     onChange={this.onChangeEmail}
                 />
-                <label>Subject: </label>
-                <input type="text"
+                <br/>
+                <label>Select an area you were facing an issue: </label>
+                <div>
+                    <DropDownList
+                        required
+                        data={this.listAreas}
+                        onChange={this.onChangeSubject}
+                        value={this.state.subject}
+                    /> 
+                </div>
+                <br/>
+                <label>Describe the issue in more detail: </label>
+                <textarea type="text"
                     required
+                    rows="5"
                     className="form-control"
-                    value={this.state.email}
-                    onChange={this.onChangeSubject}
-                />
-                <label>Body: </label>
-                <input type="text"
-                    required
-                    className="form-control"
-                    value={this.state.email}
+                    value={this.state.body}
                     onChange={this.onChangeBody}
                 />
               </div>       
             <div className="form-group">
-                <input type="submit" value="Create User" className="btn btn-primary"/>
+                <input type="submit" value="Create Ticket" className="btn btn-primary"/>
             </div>
             </form>
         </div>

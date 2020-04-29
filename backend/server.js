@@ -15,30 +15,23 @@ try
   var express        = require('express');
   var app            = express();
   var mongoose       = require('mongoose');
-  // var session        = require('express-session');
-  var cors           = require('cors');
   var port           = 8080;
   var cron           = require('node-cron');
   var shell          = require('shelljs');
-  var fs             = require("fs");
-  
+  var cors           = require('cors');
+
+// Including environemnt variable that posses connection string to MongoDB
   require('dotenv').config();
 
 // Including required middleware
   app.use(cors());
   app.use(express.json());
-  // app.use(session (
-  // {
-  //   secret: 'Session test', 
-  //   saveUninitialized: true,
-  //   resave: true
-  // }));
   
   console.log("\nAll necessary packages included...");
 }
 catch(e) {console.log("Errors including packages: " + (e));}
 
-// Connecting to Atlas MongoDB 
+// Connecting to Atlas MongoDB
 try 
 {
   const uri = process.env.ATLAS_URI;
@@ -59,10 +52,12 @@ catch (e)
 var usersRouter         = require('./routes/users.js');
 var goaliesRouter       = require('./routes/goalies.js');
 var goalieRequestRouter = require('./routes/goalieRequest.js');
+var emailDevsRouter     = require('./routes/emailDevs.js');
 
-app.use('/users', usersRouter);
-app.use('/goalies', goaliesRouter);
+app.use('/users',         usersRouter);
+app.use('/goalies',       goaliesRouter);
 app.use('/goalieRequest', goalieRequestRouter);
+app.use('/emailDevs',     emailDevsRouter);
 
 // Cron job running NHL API goalie scrape running every 15 minutes
 console.log("Cron scheduler ready...");

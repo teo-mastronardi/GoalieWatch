@@ -33,6 +33,7 @@ Write-Host "This may take a few minutes..." -ForegroundColor Yellow
     pip install selenium
     pip install webdriver-manager
     pip install BeatifulSoup4
+    pip install lxml
     Write-Host "Webscraping packages installed" -ForegroundColor Green
 
     # Install Mongoose for DB

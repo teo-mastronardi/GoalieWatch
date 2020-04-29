@@ -30,10 +30,12 @@ router.route('/add').post((req, res) =>
 
     newGoalieRequest.save()
       .then( () => {
-        return res.status(201).json('Goalie request added!');
+        res.status(201).json('Goalie request added!');
+        console.log("Request Added!");
       })
       .catch((err => {
-        return res.status(400).json('Error saving request \n' + err);
+        res.status(400).json('Error saving request \n' + err);
+        console.log("Notification already exists for this email!");
       }));
 });
 

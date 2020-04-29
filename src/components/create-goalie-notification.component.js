@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { MultiSelect } from '@progress/kendo-react-dropdowns';
-import { filterBy } from '@progress/kendo-data-query';
+// import { filterBy } from '@progress/kendo-data-query';
 
 export default class CreateGoalieNotification extends Component
 {
@@ -115,27 +115,14 @@ export default class CreateGoalieNotification extends Component
                     onChange={this.onChangeEmail}
                     />
             </div>
-            <div> 
+            <div className="form-group"> 
                 <label>Select Goalies: </label>
-                {/* <select ref="userInput"
-                    required
-                    className="form-control"
-                    //value={this.state.goalie_name}
-                    onChange={this.onChangeGoalieName}>
-                    {
-                      this.state.goalies.map(function(goalie) {
-                        return <option 
-                          key={goalie}
-                          value={goalie}>{goalie}
-                          </option>;
-                      })
-                    }
-                </select> */}
                 <div>
                     <MultiSelect
                         data={this.state.goalies.map(function(goalie_name) {   
                                 return goalie_name;                                
                             })}
+                        required
                         filterable={true}
                         // onFilterChange={this.onFilterChange}
                         onChange={this.onChangeGoalieName}

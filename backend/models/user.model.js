@@ -16,7 +16,13 @@ var userSchema = new mongoose.Schema(
       required: true,
       minlength: 6
     },
-  }, {
+    confirmed:
+    {
+      type: Boolean,
+      default: false
+    }
+  },
+  {
     timestamps: true,
   });
 
