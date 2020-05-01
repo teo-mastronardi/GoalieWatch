@@ -8,7 +8,7 @@ router.route('/').get((req, res) =>
 {
     User.find()
       .then(users => {
-        return res.status(200).json(users);
+        return res.status(200).json('All users \n' + users);
       })
       .catch(err => {
         return res.status(400).json('Unable to save to database \n' + err);
@@ -26,11 +26,9 @@ router.route('/add').post((req, res) =>
       password,
     });
 
-    // console.log(User);
-
     newUser.save()
       .then( () => {
-        return res.status(201).json('User Added!');
+        return res.status(201).json('User Added!\n' + newUser);
       })
       .catch((err => {
         return res.status(400).json('Error saving \n' + err)

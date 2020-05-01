@@ -146,8 +146,19 @@ export default class CreateGoalieNotification extends Component
             <div className="form-group">
                 <input type="submit" value="Submit Notifcation" className="btn btn-primary" />
             </div>
+
+            <div className="form-group">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                    <a class="nav-link" href="/login">Already setup a notifcation? Login to update</a>
+                    </li> 
+                </ul>
+            </div>
+            
             </form>
           </div>
+
+          
         )
     }
 }

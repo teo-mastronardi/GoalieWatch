@@ -85,14 +85,6 @@ export default class Login extends Component
                 <input type="submit" value="Login" className="btn btn-primary"/>
             </div>
 
-            <div className="form-group">
-                <ul class="navbar-nav ml-auto">
-                    <li>
-                    <a class="nav-link" href="/register">Already setup a notifcation? Login to update</a>
-                    </li> 
-                </ul>
-            </div>
-
             </form>
         </div>
         )

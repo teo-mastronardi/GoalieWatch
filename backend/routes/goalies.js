@@ -6,12 +6,12 @@ let Goalies  = require('../models/goalie.model.js');
 // pull all scraped goalies from database
 router.route('/').get((req, res) =>
 {
-    Goalies.find().sort( {goalie_name: 1})
+    Goalies.find().sort( {goalie_name: 1} )
        .then(goalies => {
-           return res.status(200).json(goalies);
+           return res.status(200).json('List of scraped goalies: \n' + goalies);
         })
        .catch((err => {
-           return res.status(400).json('Unable to pull goalies ' + err)
+           return res.status(400).json('Unable to pull goalies ' + err);
         }));
 });
 

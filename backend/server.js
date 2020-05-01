@@ -15,18 +15,36 @@ try
   var express        = require('express');
   var app            = express();
   var mongoose       = require('mongoose');
-  var port           = 8080;
   var cron           = require('node-cron');
   var shell          = require('shelljs');
   var cors           = require('cors');
+  var session        = require('express-session');
+  var port           = 8080;
 
-// Including environemnt variable that posses connection string to MongoDB
+  // Including environemnt variable that posses connection string to MongoDB
   require('dotenv').config();
 
-// Including required middleware
+  const sessionSecret = process.env.SESSION_SECRET;
+  const sessionName   = process.env.SESSION_NAME;
+
+  // Including required middleware
   app.use(cors());
   app.use(express.json());
   
+  // Setting session variable and cookie for each users sessions
+  app.set('trust proxy', 1)
+  app.use(session ({
+    name: sessionName,
+    resave: false,
+    saveUninitialized: false,
+    secret: sessionSecret,
+    cookie: {
+      maxAge: 60000,
+      sameSite: "strict",
+      secure: true
+    },
+  }));
+
   console.log("\nAll necessary packages included...");
 }
 catch(e) {console.log("Errors including packages: " + (e));}
@@ -40,7 +58,7 @@ try
   const connection = mongoose.connection;
   connection.once('open', () => 
   {
-    console.log("\nMongoDB Atlas connection successful!\n");
+    console.log("MongoDB Atlas connection successful!\n");
   });
 }
 catch (e) 
