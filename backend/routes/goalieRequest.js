@@ -53,6 +53,8 @@ router.route('/:email').get((req, res) =>
       });
 });
 
+module.exports = router;
+
 // // Getting requests by id param
 // router.route('/:id').get((req, res) => 
 // {
@@ -99,5 +101,3 @@ router.route('/:email').get((req, res) =>
 //             return res.status(400).json('Unable to update id \n' + err)
 //         });
 // });
-
-module.exports = router;

@@ -71,15 +71,17 @@ export default class CreateGoalieNotification extends Component
         Axios.get('http://localhost:8080/goalies/')
         .then(response => {
 
+            console.log(response.data.length + "\n");
+            console.log(response);
+
             if (response.data.length > 0) 
             {
                 this.setState ({
-                    goalies:     response.data.map(goalie => goalie.goalie_name),
+                    goalies: response.data.map(goalie => goalie.goalie_name),
                     goalie_name: response.data[0].goalie_name,
-                    // teams:       response.data.map(goalie => goalie.team_name),
-                    // team_name:   response.data[0].team_name
                 })
             }
+            else return "Unable to pull list of goalies";
         })
     }
 
@@ -148,17 +150,15 @@ export default class CreateGoalieNotification extends Component
             </div>
 
             <div className="form-group">
-                <ul class="navbar-nav ml-auto">
+                <ul className="navbar-nav ml-auto">
                     <li>
-                    <a class="nav-link" href="/login">Already setup a notifcation? Login to update</a>
+                    <a className="nav-link" href="/login">Already setup a notifcation? Login to update</a>
                     </li> 
                 </ul>
             </div>
             
             </form>
           </div>
-
-          
         )
     }
 }
